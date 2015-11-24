@@ -4,7 +4,7 @@
   "description": "An integration between Slack and JIRA written in javascript",
   "main": "index.js",
   "scripts": {
-    "test": "ENVIRONMENT=test node --harmony_destructuring tests/init.js"
+    "test": "ENVIRONMENT=test JIRA_URL=https://jira.com node --harmony_destructuring tests/init.js"
   },
   "repository": {
     "type": "git",
