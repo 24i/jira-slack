@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/24i/jira-slack/issues"
   },
-  "homepage": "https://github.com/24i/jira-slack#readme"
+  "homepage": "https://github.com/24i/jira-slack#readme",
+  "devDependencies": {
+    "jasmine": "^2.3.2"
+  }
 }
