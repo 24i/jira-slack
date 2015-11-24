@@ -23,5 +23,8 @@
   "homepage": "https://github.com/24i/jira-slack#readme",
   "devDependencies": {
     "jasmine": "^2.3.2"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
   }
 }
