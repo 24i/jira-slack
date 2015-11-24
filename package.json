@@ -1,0 +1,24 @@
+{
+  "name": "jira-slack",
+  "version": "1.0.0",
+  "description": "An integration between Slack and JIRA written in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/24i/jira-slack.git"
+  },
+  "keywords": [
+    "slack",
+    "jira",
+    "integration"
+  ],
+  "author": "Bas Tuijnman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/24i/jira-slack/issues"
+  },
+  "homepage": "https://github.com/24i/jira-slack#readme"
+}
