@@ -48,4 +48,19 @@ describe('Slack message test suite', function () {
         expect(message.getIconUrl()).toBe(icon);
     });
 
+    it('should be able to add attachments', function () {
+        let message = slackMessage('basic message'),
+            attachment = require('../../../src/slack/attachment'),
+            attachments;
+
+        message.addAttachment(attachment());
+        attachments = message.getAttachments()
+        expect(attachments.length > 0).toBe(true);
+    });
+
+    it('should be able to get the string version of the message', function () {
+        let message = slackMessage('basic message');
+        expect(message.toJSON()).toBe('{"text":"basic message"}');
+    });
+
 });
