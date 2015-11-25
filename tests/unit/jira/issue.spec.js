@@ -1,8 +1,8 @@
 describe('JIRA issue parser', function () {
     'use strict';
 
-    let base = '../../../../',
-        parser = require(base + 'src/parser/jira/issue'),
+    let base = '../../../',
+        parser = require(base + 'src/jira/issue'),
         response = require(base + 'tests/responses/jira/issue.json');
 
     it('should be able to parse a JIRA issue response', function () {

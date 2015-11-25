@@ -1,7 +1,7 @@
 module.exports = function (response) {
     'use strict';
 
-    let util = require('../../util/jira'),
+    let util = require('../util/jira'),
         parseProject,
         parseUrl;
 

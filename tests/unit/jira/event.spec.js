@@ -1,8 +1,8 @@
 describe('JIRA event parser test suite', function () {
     'use strict';
 
-    let base = '../../../../',
-        parser = require(base + 'src/parser/jira/event'),
+    let base = '../../../',
+        parser = require(base + 'src/jira/event'),
         issueResponse = require(base + 'tests/responses/jira/issue.json'),
         timestamp = Math.floor(Date.now() / 1000),
         // Fake a JIRA webhook event
