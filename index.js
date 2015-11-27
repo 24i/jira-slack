@@ -31,6 +31,7 @@
     // Propagate request bodies through to the listener
     app.post('*', function (req, res) {
         listener.receive(req.body);
+        process.stdout.write(req.body);
     });
 
     // Run our webhook server
