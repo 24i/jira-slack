@@ -8,7 +8,32 @@ let https = require('https'),
 module.exports = {
 
     created: function (issue) {
-        let msg = message(issue.key);
+        let msg = message('Issue created <' + issue.url + '|' + issue.key + '>'),
+            att = attachment();
+
+        att.addField('Description', issue.description, false);
+        msg.addAttachment(att);
+
+        this.send(msg);
+    },
+
+    updated: function (issue) {
+        let msg = message('Issue updated <' + issue.url + '|' + issue.key + '>'),
+            att = attachment();
+
+        att.addField('Description', issue.description, false);
+        msg.addAttachment(att);
+
+        this.send(msg);
+    },
+
+    deleted: function (issue) {
+        let msg = message('Issue deleted <' + issue.url + '|' + issue.key + '>'),
+            att = attachment();
+
+        att.addField('Description', issue.description, false);
+        msg.addAttachment(att);
+
         this.send(msg);
     },
 

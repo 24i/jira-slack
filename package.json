@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "ENVIRONMENT=test JIRA_URL=https://jira.com SLACK_HOOK_URL=http://localhost/slack-hook node --harmony_destructuring tests/init.js"
+    "test": "ENVIRONMENT=test JIRA_URL=https://jira.com SLACK_HOOK_URL=https://localhost/slack-hook node --harmony_destructuring tests/init.js"
   },
   "repository": {
     "type": "git",

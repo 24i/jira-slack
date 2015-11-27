@@ -19,7 +19,7 @@
         });
 
         req.on('end', function () {
-            req.body = data;
+            req.body = unescape(data);
             next();
         });
     });
@@ -31,13 +31,14 @@
     // Propagate request bodies through to the listener
     app.post('*', function (req, res) {
         listener.receive(req.body);
-        process.stdout.write(req.body);
     });
 
     // Run our webhook server
     server = app.listen(process.env.PORT || 3000, function () {
 
-        listener.on('issue.created', hook.created.bind(hook));
+        listener.on('issue.created', function (evnt) {
+            hook.created(evnt.issue);
+        });
 
         process.stdout.write('Server running!\n');
     });

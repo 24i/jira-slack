@@ -31,7 +31,7 @@ module.exports = function (response) {
         id: response.id,
         key: response.key,
         url: util.getIssueURL(response.key),
-        summary: response.summary,
+        description: response.fields.description,
 
         project: parseProject(response.fields.project)
     };

@@ -80,7 +80,7 @@ module.exports = function (message) {
             if (Object.prototype.toString.call(values.attachments)) {
                 values.attachments = [];
             }
-            values.attachments.push(attachment);
+            values.attachments.push(attachment.getValues());
         },
 
         /**

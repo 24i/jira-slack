@@ -109,6 +109,14 @@ module.exports = function (text) {
          */
         getFields: function () {
             return values.fields || [];
+        },
+
+        /**
+         * gets the attachment values
+         * @return {object} Object with attachment values
+         */
+        getValues: function () {
+            return values;
         }
 
     };
