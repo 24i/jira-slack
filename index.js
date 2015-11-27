@@ -29,7 +29,7 @@
     });
 
     // Propagate request bodies through to the listener
-    app.post('/', function (req, res) {
+    app.post('*', function (req, res) {
         listener.receive(req.body);
     });
 
