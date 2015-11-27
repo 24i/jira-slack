@@ -4,7 +4,8 @@ module.exports = function (response) {
     let util = require('../util/jira'),
         parsePerson,
         parseProject,
-        parseStatus;
+        parseStatus,
+        parseType;
 
     parsePerson = function (person) {
         if (!person) {
@@ -23,6 +24,13 @@ module.exports = function (response) {
         }
 
         return response.fields.status.name.toLowerCase();
+    };
+
+    parseType = function (type) {
+        if (!type) {
+            return false;
+        }
+        return type.name;
     };
 
     /**
@@ -53,7 +61,7 @@ module.exports = function (response) {
         url: util.getIssueURL(response.key),
         description: response.fields.description,
         status: parseStatus(response.fields.status),
-        type: response.fields.issuetype.name,
+        type: parseType(response.fields.issuetype),
 
         assignee: parsePerson(response.fields.assignee),
         reporter: parsePerson(response.fields.reporter),
