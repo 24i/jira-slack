@@ -32,6 +32,7 @@
     app.post('*', function (req, res) {
         process.stdout.write(req.body);
         listener.receive(req.body);
+        res.send('OK');
     });
 
     // Run our webhook server
