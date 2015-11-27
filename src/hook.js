@@ -3,37 +3,66 @@
 let https = require('https'),
     url = require('url'),
     message = require('./slack/message'),
-    attachment = require('./slack/attachment');
+    attachment = require('./slack/attachment'),
+    colors;
+
+colors = {
+    'open': '#FF0000',
+    'closed': '#00FF00'
+};
 
 module.exports = {
 
-    created: function (issue) {
-        let msg = message('Issue created <' + issue.url + '|' + issue.key + '>'),
+    createMessage: function (opts) {
+        let issue = opts.issue,
+            msg = message(opts.text + ' <' + issue.url + '|' + issue.key + '>'),
             att = attachment();
 
         att.addField('Description', issue.description, false);
+        if (issue.reporter) {
+            att.addField('Reporter', '<mailto:' + issue.reporter.email + '|' + issue.reporter.name + '>');
+        }
+        if (issue.assignee) {
+            att.addField('Assignee', '<mailto:' + issue.assignee.email + '|' + issue.assignee.name + '>');
+        }
+
+        if (opts.color) {
+            att.setColor(opts.color);
+        }
+
         msg.addAttachment(att);
 
+        return msg;
+    },
+
+    created: function (issue) {
+        let msg = this.createMessage({
+            text: 'Issue created',
+            issue: issue,
+            color: colors.open
+        });
         this.send(msg);
     },
 
     updated: function (issue) {
-        let msg = message('Issue updated <' + issue.url + '|' + issue.key + '>'),
-            att = attachment();
+        let opts = {
+            text: 'Issue updated',
+            issue: issue
+        };
 
-        att.addField('Description', issue.description, false);
-        msg.addAttachment(att);
+        if (colors[issue.status]) {
+            opts.color = colors[issue.status];
+        }
 
+        let msg = this.createMessage(opts);
         this.send(msg);
     },
 
     deleted: function (issue) {
-        let msg = message('Issue deleted <' + issue.url + '|' + issue.key + '>'),
-            att = attachment();
-
-        att.addField('Description', issue.description, false);
-        msg.addAttachment(att);
-
+        let msg = this.createMessage({
+            text: 'Issue deleted',
+            issue: issue
+        });
         this.send(msg);
     },
 

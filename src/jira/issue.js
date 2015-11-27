@@ -2,8 +2,28 @@ module.exports = function (response) {
     'use strict';
 
     let util = require('../util/jira'),
+        parsePerson,
         parseProject,
-        parseUrl;
+        parseStatus;
+
+    parsePerson = function (person) {
+        if (!person) {
+            return false;
+        }
+
+        return {
+            email: person.emailAddress,
+            name: person.displayName
+        };
+    };
+
+    parseStatus = function (status) {
+        if (!status || typeof status.name !== 'string') {
+            return false;
+        }
+
+        return response.fields.status.name.toLowerCase();
+    };
 
     /**
      * parses the project response
@@ -32,7 +52,10 @@ module.exports = function (response) {
         key: response.key,
         url: util.getIssueURL(response.key),
         description: response.fields.description,
+        status: parseStatus(response.fields.status),
 
+        assignee: parsePerson(response.fields.assignee),
+        reporter: parsePerson(response.fields.reporter),
         project: parseProject(response.fields.project)
     };
 

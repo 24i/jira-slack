@@ -31,7 +31,6 @@
 
     // Propagate request bodies through to the listener
     app.post('*', function (req, res) {
-        process.stdout.write(req.body);
         listener.receive(req.body);
         res.send('OK');
     });
@@ -41,6 +40,14 @@
 
         listener.on('issue.created', function (evnt) {
             hook.created(evnt.issue);
+        });
+
+        listener.on('issue.updated', function (evnt) {
+            hook.updated(evnt.issue);
+        });
+
+        listener.on('issue.deleted', function (evnt) {
+            hook.deleted(evnt.issue);
         });
 
         process.stdout.write('Server running!\n');
