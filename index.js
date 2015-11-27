@@ -25,6 +25,7 @@
     });
 
     app.get('/', function (req, res) {
+        process.stdout.write('REQUEST BROWSER');
         res.send('Welcome to the JIRA slack bot');
     });
 
