@@ -30,6 +30,7 @@
 
     // Propagate request bodies through to the listener
     app.post('*', function (req, res) {
+        process.stdout.write(req.body);
         listener.receive(req.body);
     });
 
