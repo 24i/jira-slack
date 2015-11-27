@@ -7,8 +7,8 @@ let https = require('https'),
     colors;
 
 colors = {
-    'open': '#FF0000',
-    'closed': '#00FF00'
+    'open': '#E1715B',
+    'closed': '#57BF57'
 };
 
 module.exports = {
