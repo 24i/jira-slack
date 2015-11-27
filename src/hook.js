@@ -46,7 +46,7 @@ module.exports = {
 
     updated: function (issue) {
         let opts = {
-            text: 'Issue updated',
+            text: 'updated ' + issue.type,
             issue: issue
         };
 

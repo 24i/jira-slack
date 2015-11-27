@@ -53,6 +53,7 @@ module.exports = function (response) {
         url: util.getIssueURL(response.key),
         description: response.fields.description,
         status: parseStatus(response.fields.status),
+        type: response.fields.issuetype.name,
 
         assignee: parsePerson(response.fields.assignee),
         reporter: parsePerson(response.fields.reporter),
