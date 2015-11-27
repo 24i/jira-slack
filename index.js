@@ -34,7 +34,7 @@
     });
 
     // Run our webhook server
-    server = app.listen(process.env.EXPRESS_PORT || 3000, function () {
+    server = app.listen(process.env.PORT || 3000, function () {
 
         listener.on('issue.created', hook.created.bind(hook));
 
