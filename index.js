@@ -10,7 +10,7 @@
     app = express();
 
     // Little bit of middleware to get the raw request body
-    app.use(function (req, res) {
+    app.use(function (req, res, next) {
         let data = '';
 
         req.setEncoding('utf8');
@@ -22,10 +22,14 @@
             req.body = data;
             next();
         });
-    })
+    });
+
+    app.get('/', function (req, res) {
+        res.send('Welcome to the JIRA slack bot');
+    });
 
     // Propagate request bodies through to the listener
-    app.post('/', function (req, res, next) {
+    app.post('/', function (req, res) {
         listener.receive(req.body);
     });
 
