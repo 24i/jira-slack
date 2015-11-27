@@ -1,6 +1,6 @@
 'use strict';
 
-let http = require('http'),
+let https = require('https'),
     url = require('url'),
     message = require('./slack/message'),
     attachment = require('./slack/attachment');
@@ -16,7 +16,7 @@ module.exports = {
         let slackUrl = url.parse(process.env.SLACK_HOOK_URL),
             request;
 
-        request = http.request({
+        request = https.request({
             method: 'POST',
             protocol: slackUrl.protocol,
             host: slackUrl.host,
