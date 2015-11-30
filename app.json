@@ -1,0 +1,14 @@
+{
+    "name": "JIRA - Slack integration",
+    "description": "An integration between Slack and JIRA written in javascript",
+    "keywords": ["jira", "slack", "nodejs"],
+    "repository": "https://github.com/24i/jira-slack",
+    "env": {
+        "JIRA_URL": {
+            "description": "Your JIRA installation URL"
+        },
+        "SLACK_HOOK_URL": {
+            "description": "Your outgoing Slack hook URL"
+        }
+    }
+}
