@@ -59,7 +59,7 @@ module.exports = function (response) {
         id: response.id,
         key: response.key,
         url: util.getIssueURL(response.key),
-        description: response.fields.description,
+        description: response.fields.summary,
         status: parseStatus(response.fields.status),
         type: parseType(response.fields.issuetype),
 
