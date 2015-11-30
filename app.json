@@ -8,7 +8,7 @@
             "description": "Your JIRA installation URL"
         },
         "SLACK_HOOK_URL": {
-            "description": "Your outgoing Slack hook URL"
+            "description": "Your incoming Slack hook URL"
         }
     }
 }
