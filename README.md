@@ -1,4 +1,4 @@
-# jira-slack
+# jira-slack [![Build Status](https://travis-ci.org/24i/jira-slack.svg?branch=master)](https://travis-ci.org/24i/jira-slack)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/24i/jira-slack)
 
