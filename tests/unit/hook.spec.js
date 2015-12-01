@@ -4,12 +4,8 @@ describe('receiver test suite', function () {
     let https = require('https'),
         hook = require('../../src/hook'),
         message = require('../../src/slack/message'),
-        response = require('../responses/jira/issue.json'),
-        evnt = require('../../src/jira/event')({
-            timestamp: Math.floor(Date.now() / 1000),
-            event: 'created',
-            issue: response
-        });
+        response = require('../responses/jira/event'),
+        evnt = require('../../src/jira/event')(response);
 
     beforeEach(function () {
         spyOn(https, 'request').and.callThrough();

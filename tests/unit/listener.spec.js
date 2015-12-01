@@ -1,7 +1,7 @@
 describe('listener test suite', function () {
     'use strict';
 
-    let issue = require('../responses/jira/issue.json'),
+    let issue = require('../responses/jira/event').issue,
         createResponse,
         listener;
 

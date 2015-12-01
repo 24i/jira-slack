@@ -4,8 +4,8 @@ module.exports = function (response) {
     let issueParser = require('./issue');
 
     return {
-        date: (new Date(parseInt(response.timestamp) * 1000)),
-        type: response.event,
+        date: (new Date(parseInt(response.timestamp))),
+        type: response.event || 'updated',
         issue: issueParser(response.issue)
     };
 
