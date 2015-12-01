@@ -5,7 +5,11 @@ describe('receiver test suite', function () {
         hook = require('../../src/hook'),
         message = require('../../src/slack/message'),
         response = require('../responses/jira/issue.json'),
-        issue = require('../../src/jira/issue')(response);
+        evnt = require('../../src/jira/event')({
+            timestamp: Math.floor(Date.now() / 1000),
+            event: 'created',
+            issue: response
+        });
 
     beforeEach(function () {
         spyOn(https, 'request').and.callThrough();
@@ -28,19 +32,19 @@ describe('receiver test suite', function () {
 
     it('should be able to send an issue created message', function () {
         spyOn(hook, 'send');
-        hook.created(issue);
+        hook.created(evnt);
         expect(hook.send).toHaveBeenCalled();
     });
 
     it('should be able to send an issue updated message', function () {
         spyOn(hook, 'send');
-        hook.updated(issue);
+        hook.updated(evnt);
         expect(hook.send).toHaveBeenCalled();
     });
 
     it('should be able to send an issue deleted message', function () {
         spyOn(hook, 'send');
-        hook.deleted(issue);
+        hook.deleted(evnt);
         expect(hook.send).toHaveBeenCalled();
     });
 

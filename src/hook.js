@@ -35,20 +35,21 @@ module.exports = {
         return msg;
     },
 
-    created: function (issue) {
+    created: function (evnt) {
         let msg = this.createMessage({
             text: 'Issue created',
-            issue: issue,
+            issue: evnt.issue,
             color: colors.open
         });
         this.send(msg);
     },
 
-    updated: function (issue) {
-        let opts = {
-            text: 'updated ' + issue.type,
-            issue: issue
-        };
+    updated: function (evnt) {
+        let issue = evnt.issue,
+            opts = {
+                text: 'updated ' + issue.type,
+                issue: issue
+            };
 
         if (colors[issue.status]) {
             opts.color = colors[issue.status];
@@ -58,10 +59,10 @@ module.exports = {
         this.send(msg);
     },
 
-    deleted: function (issue) {
+    deleted: function (evnt) {
         let msg = this.createMessage({
             text: 'Issue deleted',
-            issue: issue
+            issue: evnt.issue
         });
         this.send(msg);
     },
