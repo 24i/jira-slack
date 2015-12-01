@@ -3,23 +3,18 @@ describe('JIRA event parser test suite', function () {
 
     let base = '../../../',
         parser = require(base + 'src/jira/event'),
-        issueResponse = require(base + 'tests/responses/jira/issue.json'),
-        timestamp = Math.floor(Date.now() / 1000),
-        // Fake a JIRA webhook event
-        eventData = {
-            timestamp: timestamp,
-            event: 'created',
-            issue: issueResponse
-        };
+        eventData = require(base + 'tests/responses/jira/event'),
+        timestamp = Math.floor(Date.now() / 1000);
 
     it('should be able to parse an event', function () {
         let event = parser(eventData);
 
         expect(event.date instanceof Date).toBe(true);
         expect(event.date.getYear()).toBe((new Date()).getYear());
-        expect(event.type).toBe('created');
+        expect(event.type).toBe('updated');
 
         expect(event.issue).not.toBeUndefined();
+        expect(event.user).not.toBeUndefined();
     });
 
 });

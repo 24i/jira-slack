@@ -1,12 +1,14 @@
 module.exports = function (response) {
     'use strict';
 
-    let issueParser = require('./issue');
+    let issue = require('./issue'),
+        user = require('./user');
 
     return {
-        date: (new Date(parseInt(response.timestamp) * 1000)),
-        type: response.event,
-        issue: issueParser(response.issue)
+        date: (new Date(parseInt(response.timestamp))),
+        type: response.event || 'updated',
+        issue: issue(response.issue),
+        user: user(response.user)
     };
 
 };

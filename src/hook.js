@@ -16,14 +16,22 @@ module.exports = {
     createMessage: function (opts) {
         let issue = opts.issue,
             msg = message(opts.text + ' <' + issue.url + '|' + issue.key + '>'),
-            att = attachment();
+            att = attachment(),
+            reporter = issue.reporter,
+            assignee = issue.assignee;
 
         att.addField('Description', issue.description, false);
         if (issue.reporter) {
-            att.addField('Reporter', '<mailto:' + issue.reporter.email + '|' + issue.reporter.name + '>');
+            att.addField(
+                'Reporter',
+                '<mailto:' + reporter.getEmail() + '|' + reporter.getName() + '>'
+            );
         }
         if (issue.assignee) {
-            att.addField('Assignee', '<mailto:' + issue.assignee.email + '|' + issue.assignee.name + '>');
+            att.addField(
+                'Assignee',
+                '<mailto:' + assignee.getEmail() + '|' + assignee.getName() + '>'
+            );
         }
 
         if (opts.color) {
@@ -35,20 +43,21 @@ module.exports = {
         return msg;
     },
 
-    created: function (issue) {
+    created: function (evnt) {
         let msg = this.createMessage({
-            text: 'Issue created',
-            issue: issue,
+            text: evnt.user.getName() + ' created Issue',
+            issue: evnt.issue,
             color: colors.open
         });
         this.send(msg);
     },
 
-    updated: function (issue) {
-        let opts = {
-            text: 'updated ' + issue.type,
-            issue: issue
-        };
+    updated: function (evnt) {
+        let issue = evnt.issue,
+            opts = {
+                text: evnt.user.getName() + ' updated Issue',
+                issue: issue
+            };
 
         if (colors[issue.status]) {
             opts.color = colors[issue.status];
@@ -58,10 +67,10 @@ module.exports = {
         this.send(msg);
     },
 
-    deleted: function (issue) {
+    deleted: function (evnt) {
         let msg = this.createMessage({
-            text: 'Issue deleted',
-            issue: issue
+            text: evnt.user.getName() + ' deleted Issue',
+            issue: evnt.issue
         });
         this.send(msg);
     },

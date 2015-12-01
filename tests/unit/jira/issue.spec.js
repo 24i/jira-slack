@@ -3,10 +3,10 @@ describe('JIRA issue parser', function () {
 
     let base = '../../../',
         parser = require(base + 'src/jira/issue'),
-        response = require(base + 'tests/responses/jira/issue.json');
+        response = require(base + 'tests/responses/jira/event');
 
     it('should be able to parse a JIRA issue response', function () {
-        let issue = parser(response);
+        let issue = parser(response.issue);
 
         expect(issue.id).toBe('10002');
         expect(issue.key).toBe('EX-1');
@@ -14,7 +14,7 @@ describe('JIRA issue parser', function () {
     });
 
     it('should be able to access project properties', function () {
-        let issue = parser(response),
+        let issue = parser(response.issue),
             project = issue.project;
 
         expect(project).not.toBeUndefined();

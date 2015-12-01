@@ -4,8 +4,8 @@ describe('receiver test suite', function () {
     let https = require('https'),
         hook = require('../../src/hook'),
         message = require('../../src/slack/message'),
-        response = require('../responses/jira/issue.json'),
-        issue = require('../../src/jira/issue')(response);
+        response = require('../responses/jira/event'),
+        evnt = require('../../src/jira/event')(response);
 
     beforeEach(function () {
         spyOn(https, 'request').and.callThrough();
@@ -27,20 +27,38 @@ describe('receiver test suite', function () {
     });
 
     it('should be able to send an issue created message', function () {
+        let msg;
+
         spyOn(hook, 'send');
-        hook.created(issue);
+        spyOn(hook, 'createMessage').and.callThrough();
+        hook.created(evnt);
+
+        msg = hook.createMessage.calls.mostRecent().returnValue;
+        expect(msg.getText()).toBe('John Doe created Issue <https://jira.com/browse/EX-1|EX-1>');
         expect(hook.send).toHaveBeenCalled();
     });
 
     it('should be able to send an issue updated message', function () {
+        let msg;
+
         spyOn(hook, 'send');
-        hook.updated(issue);
+        spyOn(hook, 'createMessage').and.callThrough();
+        hook.updated(evnt);
+
+        msg = hook.createMessage.calls.mostRecent().returnValue;
+        expect(msg.getText()).toBe('John Doe updated Issue <https://jira.com/browse/EX-1|EX-1>');
         expect(hook.send).toHaveBeenCalled();
     });
 
     it('should be able to send an issue deleted message', function () {
+        let msg;
+
         spyOn(hook, 'send');
-        hook.deleted(issue);
+        spyOn(hook, 'createMessage').and.callThrough();
+        hook.deleted(evnt);
+
+        msg = hook.createMessage.calls.mostRecent().returnValue;
+        expect(msg.getText()).toBe('John Doe deleted Issue <https://jira.com/browse/EX-1|EX-1>');
         expect(hook.send).toHaveBeenCalled();
     });
 

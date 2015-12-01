@@ -1,12 +1,17 @@
 describe('listener test suite', function () {
     'use strict';
 
-    let issue = require('../responses/jira/issue.json'),
+    let response = require('../responses/jira/event'),
+        issue = response.issue,
+        user = response.user,
         createResponse,
         listener;
 
     createResponse = function (type) {
-        return '{"webhookEvent":"jira:issue_' + type + '", "issue":' + JSON.stringify(issue) + '}';
+        return '{"webhookEvent":"jira:issue_' + type + '"'
+            + ', "issue":' + JSON.stringify(issue)
+            + ', "user":' + JSON.stringify(user)
+            + '}';
     };
 
     beforeEach(function () {
