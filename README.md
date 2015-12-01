@@ -34,10 +34,4 @@ This will run the integration server and you can now add it as a JIRA WebHook
 Running the tests is easy as pie, just run the following command `npm test` and it'll run all of the tests for you
 
 ## Contributing
-
-Feel free to contribute to this repository with fixes/features or suggestions.
-
-Things to consider when contributing:
-* Make sure your code passes the existing tests
-* When no tests exists for your code please create it :smile:
-* Document your code
+You can find more info about contributing at [contributing.md](contributing.md)
