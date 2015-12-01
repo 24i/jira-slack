@@ -2,21 +2,10 @@ module.exports = function (response) {
     'use strict';
 
     let util = require('../util/jira'),
-        parsePerson,
+        user = require('./user'),
         parseProject,
         parseStatus,
         parseType;
-
-    parsePerson = function (person) {
-        if (!person) {
-            return false;
-        }
-
-        return {
-            email: person.emailAddress,
-            name: person.displayName
-        };
-    };
 
     parseStatus = function (status) {
         if (!status || typeof status.name !== 'string') {
@@ -63,8 +52,8 @@ module.exports = function (response) {
         status: parseStatus(response.fields.status),
         type: parseType(response.fields.issuetype),
 
-        assignee: parsePerson(response.fields.assignee),
-        reporter: parsePerson(response.fields.reporter),
+        assignee: user(response.fields.assignee),
+        reporter: user(response.fields.reporter),
         project: parseProject(response.fields.project)
     };
 
