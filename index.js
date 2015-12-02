@@ -38,15 +38,15 @@
     server = app.listen(process.env.PORT || 3000, function () {
 
         listener.on('issue.created', function (evnt) {
-            hook.created(evnt.issue);
+            hook.created(evnt);
         });
 
         listener.on('issue.updated', function (evnt) {
-            hook.updated(evnt.issue);
+            hook.updated(evnt);
         });
 
         listener.on('issue.deleted', function (evnt) {
-            hook.deleted(evnt.issue);
+            hook.deleted(evnt);
         });
 
         process.stdout.write('Server running!\n');
