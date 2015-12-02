@@ -1,22 +1,30 @@
 module.exports = function (user) {
     'use strict';
 
-    let name = user.displayName,
-        userName = user.key,
-        email = user.emailAddress;
+    let values;
+
+    if (!user) {
+        return false;
+    }
+
+    values = {
+        name: user.displayName,
+        username: user.key,
+        email: user.emailAddress
+    };
 
     return {
 
         getName: function () {
-            return name;
+            return values.name;
         },
 
         getUsername: function () {
-            return userName;
+            return values.username;
         },
 
         getEmail: function () {
-            return email;
+            return values.email;
         }
 
     };
