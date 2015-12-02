@@ -10,4 +10,9 @@ describe('JIRA user parser', function () {
         expect(user.getEmail()).toBe('john.doe@example.com');
     });
 
+    it('should return false when no user response is given', function () {
+        let user = require('../../../src/jira/user')();
+        expect(user).toBe(false);
+    });
+
 });
