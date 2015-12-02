@@ -1,6 +1,6 @@
 {
   "name": "jira-slack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An integration between Slack and JIRA written in javascript",
   "main": "index.js",
   "scripts": {
