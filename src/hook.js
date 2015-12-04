@@ -38,6 +38,10 @@ module.exports = {
             att.setColor(opts.color);
         }
 
+        if (issue.project && process.env['JIRA_SLACK_PROJECT_' + issue.project.key]) {
+            msg.setChannel('#' + process.env['JIRA_SLACK_PROJECT_' + issue.project.key]);
+        }
+
         msg.addAttachment(att);
 
         return msg;

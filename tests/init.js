@@ -3,6 +3,10 @@
 let JasmineRunner = require('jasmine'),
     jasmine = new JasmineRunner();
 
+require('dotenv').config({
+    path: __dirname + '/.env'
+});
+
 jasmine.loadConfigFile('tests/jasmine.json');
 
 jasmine.onComplete(function(passed) {

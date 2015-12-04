@@ -62,4 +62,28 @@ describe('receiver test suite', function () {
         expect(hook.send).toHaveBeenCalled();
     });
 
+    it('should not have a specific channel whe the project is not mapped', function () {
+        let msg;
+
+        evnt.issue.project.key = 'EXMPL';
+        spyOn(hook, 'send');
+        spyOn(hook, 'createMessage').and.callThrough();
+        hook.created(evnt);
+
+        msg = hook.createMessage.calls.mostRecent().returnValue;
+        expect(msg.getChannel()).toBe(false);
+        evnt.issue.project.key = 'EX';
+    });
+
+    it('should have a specific channel when a variable is available', function () {
+        let msg;
+
+        spyOn(hook, 'send');
+        spyOn(hook, 'createMessage').and.callThrough();
+        hook.created(evnt);
+
+        msg = hook.createMessage.calls.mostRecent().returnValue;
+        expect(msg.getChannel()).toBe('#example-channel');
+    });
+
 });
