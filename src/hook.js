@@ -13,6 +13,14 @@ colors = {
 
 module.exports = {
 
+    /**
+     * creates a new message to be sent to the slack hook
+     * @param {object} opts options object
+     * @param {Issue} opts.issue The issue which is related to this message
+     * @param {User} opts.reporter The User who has reported the issue
+     * @param {User} opts.assignee The User which is assigned to the issue
+     * @return {Message}      Returns a filled message ready to be sent
+     */
     createMessage: function (opts) {
         let issue = opts.issue,
             msg = message(opts.text + ' <' + issue.url + '|' + issue.key + '>'),
@@ -43,6 +51,10 @@ module.exports = {
         return msg;
     },
 
+    /**
+     * create and send a message for a newly created issue
+     * @param  {object} evnt The JIRA event which was captured
+     */
     created: function (evnt) {
         let msg = this.createMessage({
             text: evnt.user.getName() + ' created Issue',
@@ -52,6 +64,10 @@ module.exports = {
         this.send(msg);
     },
 
+    /**
+     * create and send a message for an updated JIRA issue
+     * @param  {object} evnt The JIRA event which was captured
+     */
     updated: function (evnt) {
         let issue = evnt.issue,
             opts = {
@@ -67,6 +83,10 @@ module.exports = {
         this.send(msg);
     },
 
+    /**
+     * create and send a message for a deleted JIRA issue
+     * @param  {object} evnt The JIRA event which was captured
+     */
     deleted: function (evnt) {
         let msg = this.createMessage({
             text: evnt.user.getName() + ' deleted Issue',
@@ -75,6 +95,11 @@ module.exports = {
         this.send(msg);
     },
 
+    /**
+     * sends a message to the Slack hook
+     * @param  {Message} msg The message you want to send
+     * @return {Request}     The generated HTTPS request
+     */
     send: function (msg) {
         let slackUrl = url.parse(process.env.SLACK_HOOK_URL),
             request;
