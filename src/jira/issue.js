@@ -1,3 +1,17 @@
+/**
+ * creates a JIRA issue object
+ * @param  {object} response The JIRA hook response body
+ * @return {object}          Object containing:
+ *                                  - ID (object.id)
+ *                                  - Issue key (object.key)
+ *                                  - Issue URL (object.url)
+ *                                  - Issue description (object.description)
+ *                                  - Issue status (object.status)
+ *                                  - Issue type (object.type)
+ *                                  - Assignee (object.assignee)
+ *                                  - Reporter (object.reporter)
+ *                                  - Project (object.project)
+ */
 module.exports = function (response) {
     'use strict';
 

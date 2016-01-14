@@ -1,3 +1,8 @@
+/**
+ * Creates a new JIRA event
+ * @param  {object} response The JIRA hook response body
+ * @return {object}          Event object containing date, type, issue and user
+ */
 module.exports = function (response) {
     'use strict';
 
