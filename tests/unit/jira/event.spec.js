@@ -10,7 +10,7 @@ describe('JIRA event parser test suite', function () {
         let event = parser(eventData);
 
         expect(event.date instanceof Date).toBe(true);
-        expect(event.date.getYear()).toBe((new Date()).getYear());
+        expect(event.date.getFullYear()).toBe((new Date()).getFullYear());
         expect(event.type).toBe('updated');
 
         expect(event.issue).not.toBeUndefined();

@@ -1,5 +1,5 @@
 module.exports = {
-    "timestamp": 1448636028289,
+    "timestamp": Math.floor((+ new Date())),
     "webhookEvent": "jira:issue_updated",
     "user": {
         "self": "https://example.com/rest/api/2/user?username=john.doe",
